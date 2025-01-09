@@ -10,7 +10,7 @@ resource "aws_instance" "jenkins_ec2" {
 
 
     tags = {
-      Name = "${var.project_name}-jenkins-ec2"
+      Name = "${var.project_name}-ec2"
     }
   
 }

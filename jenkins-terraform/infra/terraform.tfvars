@@ -1,7 +1,7 @@
 
 aws_region = "us-east-1"
 aws_profile = "default"
-project_name = "Dev-project"
+project_name = "jenkins"
 
 vpc_cidr = "11.0.0.0/16"
 
