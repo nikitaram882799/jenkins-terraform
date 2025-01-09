@@ -61,38 +61,3 @@ resource "aws_security_group" "ec2_jenkins_port_8080" {
   }
 }
 
-resource "aws_security_group" "rds_mysql_sg" {
-  name        = "rds-sg"
-  description = "Allow access to RDS from EC2 present in public subnet"
-  vpc_id      = var.vpc_id
-
-  ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]# replace with your EC2 instance security group CIDR block
-  }
-}
-
-
-resource "aws_security_group" "python_api_sg" {
-  name        = "python-sg"
-  description = "Enable the Port 5000 for python api"
-  vpc_id      = var.vpc_id
-
-  # ssh for terraform remote exec
-  ingress {
-    description = "Allow traffic on port 5000"
-    cidr_blocks = ["0.0.0.0/0"]
-    from_port   = 5000
-    to_port     = 5000
-    protocol    = "tcp"
-  }
-
-  tags = {
-    Name = "Security Groups to allow traffic on port 5000"
-  }
-}
-
-
-
