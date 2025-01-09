@@ -25,7 +25,7 @@ module "ec2" {
     enable_public_ip = var.enable_public_ip
     project_name = var.project_name
     subnet_id = tolist(module.vpc.dev_public_subnet)[0]
-    sg_id = [module.sg.dev_sg,module.sg.ec2_jenkins_port_8080,module.sg.python_api_sg]
+    sg_id = [module.sg.dev_sg,module.sg.ec2_jenkins_port_8080]
     
 }
 
@@ -65,14 +65,5 @@ module "acm" {
     hosted_zone_id = module.route53.hosted_zone_id
 }
 
-module "rds" {
-  source = "../modules/rds"
-  db_subnet_group_name = "rds_subnet_group"
-  subnet_groups        = tolist(module.vpc.dev_public_subnet)
-  rds_mysql_sg_id      = module.sg.rds_mysql_sg_id
-  mysql_db_identifier  = "mydb"
-  mysql_username       = "dbuser"
-  mysql_password       = "dbpassword"
-  mysql_dbname         = "devprojdb"
-}
+
 
